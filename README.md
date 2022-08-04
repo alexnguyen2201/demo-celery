@@ -170,5 +170,29 @@ Thank you!
 ⮑ [a5054d64-5592-4347-be77-cefab994c2bd] succeeded in 20. 078754458052572s: None
 ```
 
+## Kiểm tra REDIS
+- Load tất cả các key trong redis
+```console
+redis-cli
+> KEYS *
+1) "celery-task-meta-bbe908d1-b6e9-4220-866c-9db66b0d289d"
+2) "_kombu.binding.celery"
+3) "celery-task-meta-cb0c780e-4fa4-43c8-aa3b-d9d4a85d61e0"
+4) "celery-task-meta-151be6f0-fa47-4423-8610-2cd09d10ae85"
+
+```
+- Kiểm tra định dạng của key
+```console
+type _kombu.binding.celery
+set
+```
+- Lấy giá trị của một key lọai string:
+```console
+redis-cli
+> GET celery-task-meta-cb0c780e-4fa4-43c8-aa3b-d9d4a85d61e0
+
+"{\"status\": \"SUCCESS\", \"result\": null, \"traceback\": null, \"children\": [], \"date_done\": \"2022-08-04T08:29:12.419440\", \"task_id\": \"cb0c780e-4fa4-43c8-aa3b-d9d4a85d61e0\"}"
+```
+
 ## Tham khảo
 https://realpython.com/asynchronous-tasks-with-django-and-celery/
